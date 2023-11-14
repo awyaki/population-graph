@@ -1,11 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { env } from "./env.js";
 import { z } from "zod";
+import { API_KEY, BASE_URL } from "./config.js";
 import { Prefectures, Error } from "./scheme.js";
-
-const BASE_URL = "https://opendata.resas-portal.go.jp/api/v1";
-
-const API_KEY = env.RESUS_API_KEY;
 
 const ApiResponse = z.union([Prefectures, Error]);
 
