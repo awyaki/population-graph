@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  > li {
+    list-style: none;
+  }
+}
+
+.checkbox-label {
+  cursor: pointer;
+}
