@@ -19,6 +19,14 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  overrides: [
+    {
+      files: ["**/*.tsx", "**/*.ts"],
+      rules: {
+        "react/prop-types": "off",
+      },
+    },
+  ],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
