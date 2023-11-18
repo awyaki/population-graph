@@ -5,7 +5,7 @@ import { z } from "zod";
  * [仕様詳細](https://opendata.resas-portal.go.jp/docs/api/v1/detail/index.html)
  * */
 
-export const Error = z
+export const ResusApiError = z
   .object({
     statusCode: z.string().optional(),
     message: z.string().nullable(),
