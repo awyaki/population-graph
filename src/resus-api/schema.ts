@@ -17,14 +17,12 @@ export const Error = z
 
 export const Prefectures = z.object({
   message: z.null(),
-  result: z.optional(
-    z
-      .object({
-        prefCode: z.number(),
-        prefName: z.string(),
-      })
-      .array()
-  ),
+  result: z
+    .object({
+      prefCode: z.number(),
+      prefName: z.string(),
+    })
+    .array(),
 });
 
 // [人口構成](https://opendata.resas-portal.go.jp/docs/api/v1/population/composition/perYear.html)
