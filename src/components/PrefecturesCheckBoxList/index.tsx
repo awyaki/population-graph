@@ -1,19 +1,19 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { fetchPrefectures } from "../../resus-api/fetchPrefectures";
 import { useMemo } from "react";
 import styles from "./styles.module.css";
 
-type Pref = {
-  prefCode: number;
-  prefName: string;
-};
-
 type Props = {
-  prefs: Pref[];
   checkedPrefs: number[];
   onChange: (prefCode: number) => void;
 };
 
 const PrefecturesCheckBoxList: React.FC<Props> = (props) => {
-  const { prefs, onChange, checkedPrefs } = props;
+  const { onChange, checkedPrefs } = props;
+  const { data: prefs } = useSuspenseQuery({
+    queryKey: ["prefectures"],
+    queryFn: fetchPrefectures,
+  });
 
   const checkedPrefsSet = useMemo(() => {
     return new Set(checkedPrefs);

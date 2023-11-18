@@ -1,3 +1,5 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Suspense } from "react";
 import { describe, it, afterEach, vi, expect } from "vitest";
 import { render, cleanup, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
@@ -9,31 +11,24 @@ afterEach(() => {
 
 describe("PrefecturesCheckBoxList", () => {
   const mockHandleChange = vi.fn();
-  /*
-   * RESUS API 都道府県一覧が返却するデータのうち
-   * 北海道、東京都、大阪府のデータを用いてテストを行う
-   * */
   const renderPrefectursCheckBoxList = () => {
+    const queryClient = new QueryClient();
     render(
-      <PrefecturesCheckBoxList
-        prefs={[
-          {
-            prefCode: 1,
-            prefName: "北海道",
-          },
-          { prefCode: 13, prefName: "東京都" },
-          { prefCode: 27, prefName: "大阪府" },
-        ]}
-        checkedPrefs={[1]}
-        onChange={mockHandleChange}
-      />
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<>Loding...</>}>
+          <PrefecturesCheckBoxList
+            checkedPrefs={[1]}
+            onChange={mockHandleChange}
+          />
+        </Suspense>
+      </QueryClientProvider>
     );
   };
 
-  it("北海道のチェックボックスが表示されており、チェックされている", () => {
+  it("北海道のチェックボックスが表示されており、チェックされている", async () => {
     renderPrefectursCheckBoxList();
 
-    const checkbox: HTMLInputElement = screen.getByLabelText("北海道", {
+    const checkbox: HTMLInputElement = await screen.findByLabelText("北海道", {
       selector: "input",
     });
 
@@ -47,10 +42,10 @@ describe("PrefecturesCheckBoxList", () => {
     expect(checkbox.checked).toBe(true);
   });
 
-  it("東京都のチェックボックスが表示されており、チェックされていない", () => {
+  it("東京都のチェックボックスが表示されており、チェックされていない", async () => {
     renderPrefectursCheckBoxList();
 
-    const checkbox: HTMLInputElement = screen.getByLabelText("東京都", {
+    const checkbox: HTMLInputElement = await screen.findByLabelText("東京都", {
       selector: "input",
     });
 
@@ -64,10 +59,10 @@ describe("PrefecturesCheckBoxList", () => {
     expect(checkbox.checked).toBe(false);
   });
 
-  it("大阪府のチェックボックスが表示されており、チェックされていない", () => {
+  it("大阪府のチェックボックスが表示されており、チェックされていない", async () => {
     renderPrefectursCheckBoxList();
 
-    const checkbox: HTMLInputElement = screen.getByLabelText("大阪府", {
+    const checkbox: HTMLInputElement = await screen.findByLabelText("大阪府", {
       selector: "input",
     });
 
@@ -85,7 +80,7 @@ describe("PrefecturesCheckBoxList", () => {
     const user = userEvent.setup();
     renderPrefectursCheckBoxList();
 
-    const checkbox: HTMLInputElement = screen.getByLabelText("北海道", {
+    const checkbox: HTMLInputElement = await screen.findByLabelText("北海道", {
       selector: "input",
     });
 
