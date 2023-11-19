@@ -1,7 +1,10 @@
+import { z } from "zod";
 import { Prefectures } from "./schema";
 import { baseUrl } from "./config";
 
-export const fetchPrefectures = async () => {
+type Prefectures = z.infer<typeof Prefectures>;
+
+export const fetchPrefectures = async (): Promise<Prefectures> => {
   const res = await fetch(`${baseUrl}/api/prefectures`);
 
   if (!res.ok) throw new Error("データの取得に失敗しました");
@@ -10,7 +13,7 @@ export const fetchPrefectures = async () => {
 
   const result = Prefectures.safeParse(_data);
 
-  if (result.success) return result.data.result;
+  if (result.success) return result.data;
 
   // _dataがPrefecturesにパースできないとき
   throw new Error("データの取得に失敗しました");

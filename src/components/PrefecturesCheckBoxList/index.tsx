@@ -10,7 +10,7 @@ type Props = {
 
 const PrefecturesCheckBoxList: React.FC<Props> = (props) => {
   const { onChange, checkedPrefs } = props;
-  const { data: prefs } = useSuspenseQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["prefectures"],
     queryFn: fetchPrefectures,
   });
@@ -21,7 +21,7 @@ const PrefecturesCheckBoxList: React.FC<Props> = (props) => {
 
   return (
     <ul className={styles.wrapper}>
-      {prefs.map((pref) => (
+      {data.result.map((pref) => (
         <li key={pref.prefCode}>
           <input
             id={`pref-checkbox-${pref.prefCode}`}
