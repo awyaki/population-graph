@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 /**
- * The following code reference to the spec of RESUS API.
+ * The following code reference to the spec of RESAS API.
  * [仕様詳細](https://opendata.resas-portal.go.jp/docs/api/v1/detail/index.html)
  * */
 
