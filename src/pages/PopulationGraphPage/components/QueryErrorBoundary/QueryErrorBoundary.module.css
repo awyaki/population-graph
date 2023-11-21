@@ -1,0 +1,16 @@
+.fallbackContainer > p {
+  margin-bottom: 16px;
+}
+
+.retryButton {
+  cursor: pointer;
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: #fa655f;
+  border: 2px solid #fa655f;
+  &:hover {
+    color: #404040;
+    background-color: #ffffff;
+  }
+}
