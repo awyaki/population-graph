@@ -21,7 +21,7 @@ const PopulationGraph: React.FC<Props> = ({ checkedPrefs }) => {
     useGraph(checkedPrefs);
 
   return (
-    <>
+    <div>
       {renderLabelTabBar()}
       <ResponsiveContainer width="100%" height={400}>
         <LineChart
@@ -76,7 +76,7 @@ const PopulationGraph: React.FC<Props> = ({ checkedPrefs }) => {
           />
         </LineChart>
       </ResponsiveContainer>
-    </>
+    </div>
   );
 };
 
