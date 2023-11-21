@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import PrefecturesCheckBoxList from "../../../components/PrefecturesCheckBoxList";
+import PrefecturesCheckBoxList from "../components/PrefecturesCheckBoxList";
 
 export const usePrefecturesCheckBoxList = (): {
   checkedPrefs: number[];

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { usePrefecturesCheckBoxList } from "./hooks/usePrefecturesCheckBoxList";
-import PopulationGraph from "../../components/PopulationGraph";
+import PopulationGraph from "./components/PopulationGraph";
 import Responsive from "../../layouts/TwoItemsResponsiveContainer";
 import Container from "../../layouts/AppContainer";
 import QueryErrorBoundary from "./components/QueryErrorBoundary";

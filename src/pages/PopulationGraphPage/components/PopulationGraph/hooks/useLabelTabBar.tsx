@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Population } from "../../../resas-api/schema";
+import { Population } from "../../../../../resas-api/schema";
 import { useState, useCallback, useMemo } from "react";
 import { TabBar } from "../components/TabBar";
 import { TabItem } from "../components/TabItem";

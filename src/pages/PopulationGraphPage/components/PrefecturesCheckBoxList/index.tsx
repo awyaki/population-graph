@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchPrefectures } from "../../resas-api/fetchPrefectures";
+import { fetchPrefectures } from "../../../../resas-api/fetchPrefectures";
 import { useMemo } from "react";
 import styles from "./styles.module.css";
 

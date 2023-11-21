@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { useMemo } from "react";
 import { useSuspenseQueries, useSuspenseQuery } from "@tanstack/react-query";
-import { fetchPrefectures } from "../../../resas-api/fetchPrefectures";
-import { fetchPopulation } from "../../../resas-api/fetchPopulation";
-import { Prefectures, Population } from "../../../resas-api/schema";
+import { fetchPrefectures } from "../../../../../resas-api/fetchPrefectures";
+import { fetchPopulation } from "../../../../../resas-api/fetchPopulation";
+import { Prefectures, Population } from "../../../../../resas-api/schema";
 import { translateIntoGraphData } from "../functions/translateIntoGraphData";
 import { useLabelTabBar } from "./useLabelTabBar";
 
