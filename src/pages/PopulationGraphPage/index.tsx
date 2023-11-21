@@ -21,9 +21,11 @@ const PopulationGraphPage: React.FC = () => {
           </QueryErrorBoundary>
         }
         second={
-          <Suspense fallback={<>Loading...</>}>
-            <PopulationGraph checkedPrefs={checkedPrefs} />
-          </Suspense>
+          <QueryErrorBoundary>
+            <Suspense fallback={<>Loading...</>}>
+              <PopulationGraph checkedPrefs={checkedPrefs} />
+            </Suspense>
+          </QueryErrorBoundary>
         }
       />
     </Container>
