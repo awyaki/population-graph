@@ -11,12 +11,18 @@ const PopulationGraphPage: React.FC = () => {
   return (
     <Container>
       <h1>都道府県別人口構成グラフ</h1>
-      <Suspense fallback={<></>}>
-        <Responsive
-          first={renderPrefecturesCheckBoxList()}
-          second={<PopulationGraph checkedPrefs={checkedPrefs} />}
-        />
-      </Suspense>
+      <Responsive
+        first={
+          <Suspense fallback={<>Loading...</>}>
+            {renderPrefecturesCheckBoxList()}
+          </Suspense>
+        }
+        second={
+          <Suspense fallback={<>Loading...</>}>
+            <PopulationGraph checkedPrefs={checkedPrefs} />
+          </Suspense>
+        }
+      />
     </Container>
   );
 };
