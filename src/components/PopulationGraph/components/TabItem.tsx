@@ -1,3 +1,4 @@
+import styles from "./TabItem.module.css";
 type Props = {
   id: string;
   text: string;
@@ -8,6 +9,7 @@ type Props = {
 export const TabItem: React.FC<Props> = ({ id, text, selected, onClick }) => {
   return (
     <button
+      className={selected ? styles.itemSelected : styles.item}
       type="button"
       role="tab"
       aria-selected={selected}
