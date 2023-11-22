@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Population, Prefectures } from "../../../resas-api/schema";
+import { Population, Prefectures } from "../../../../../resas-api/schema";
 
 export type Population = z.infer<typeof Population>;
 
