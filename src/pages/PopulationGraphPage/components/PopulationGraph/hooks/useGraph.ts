@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { usePrefectures } from "../../../hooks/usePrefectures";
 import { usePopulation } from "./usePopulation";
 import { useGetGraphData } from "./useGetGraphData";
+import { useCheckedPrefsWithNames } from "./useCheckedPrefsWithNames";
 import { Prefectures, Population } from "../../../../../resas-api/schema";
 import { translateIntoGraphData } from "../functions/translateIntoGraphData";
 import { useLabelTabBar } from "./useLabelTabBar";
@@ -28,25 +29,7 @@ export const useGraph = (
     population,
     selectedLabel
   );
-
-  const checkedPrefsWithNames = useMemo(() => {
-    const prefsMap = new Map<number, string>(
-      prefs.map(({ prefCode, prefName }) => {
-        return [prefCode, prefName];
-      })
-    );
-
-    return checkedPrefs.map((prefCode) => {
-      const prefName = prefsMap.get(prefCode);
-
-      // checkedPrefsの要素の値はprefCodeである。
-      // prefsは全てのprefCodeにそれぞれ対応するオブジェクトを持つため
-      // prefsMap.get(prefCode)の値がundefinedになることはない
-      if (prefName === undefined) throw new Error("エラーが発生しました");
-
-      return { prefCode, prefName };
-    });
-  }, [checkedPrefs, prefs]);
+  const checkedPrefsWithNames = useCheckedPrefsWithNames(checkedPrefs, prefs);
 
   return {
     selectedLabel,
