@@ -1,5 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { fetchPrefectures } from "../../../../resas-api/fetchPrefectures";
+import { usePrefectures } from "../../hooks/usePrefectures";
 import { useMemo } from "react";
 import styles from "./styles.module.css";
 
@@ -10,10 +9,7 @@ type Props = {
 
 const PrefecturesCheckBoxList: React.FC<Props> = (props) => {
   const { onChange, checkedPrefs } = props;
-  const { data } = useSuspenseQuery({
-    queryKey: ["prefectures"],
-    queryFn: fetchPrefectures,
-  });
+  const prefs = usePrefectures();
 
   const checkedPrefsSet = useMemo(() => {
     return new Set(checkedPrefs);
@@ -21,7 +17,7 @@ const PrefecturesCheckBoxList: React.FC<Props> = (props) => {
 
   return (
     <ul className={styles.wrapper}>
-      {data.result.map((pref) => (
+      {prefs.map((pref) => (
         <li key={pref.prefCode}>
           <input
             id={`pref-checkbox-${pref.prefCode}`}
