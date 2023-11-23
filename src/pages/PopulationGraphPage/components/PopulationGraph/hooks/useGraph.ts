@@ -2,6 +2,7 @@ import { z } from "zod";
 import { useMemo } from "react";
 import { usePrefectures } from "../../../hooks/usePrefectures";
 import { usePopulation } from "./usePopulation";
+import { useGetGraphData } from "./useGetGraphData";
 import { Prefectures, Population } from "../../../../../resas-api/schema";
 import { translateIntoGraphData } from "../functions/translateIntoGraphData";
 import { useLabelTabBar } from "./useLabelTabBar";
@@ -21,15 +22,12 @@ export const useGraph = (
   const { selectedLabel, renderLabelTabBar } = useLabelTabBar();
   const prefs = usePrefectures();
   const population = usePopulation(checkedPrefs);
-
-  const graphData = useMemo(() => {
-    return translateIntoGraphData(
-      checkedPrefs,
-      prefs,
-      population,
-      selectedLabel
-    );
-  }, [checkedPrefs, prefs, population, selectedLabel]);
+  const graphData = useGetGraphData(
+    checkedPrefs,
+    prefs,
+    population,
+    selectedLabel
+  );
 
   const checkedPrefsWithNames = useMemo(() => {
     const prefsMap = new Map<number, string>(
