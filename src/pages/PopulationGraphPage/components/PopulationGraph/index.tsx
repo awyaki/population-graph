@@ -1,3 +1,4 @@
+import styles from "./PopulationGraph.module.css";
 import {
   ResponsiveContainer,
   LineChart,
@@ -25,6 +26,17 @@ const PopulationGraph: React.FC<Props> = ({ checkedPrefs }) => {
   return (
     <div>
       {renderLabelTabBar()}
+      <div className={styles.container}>
+        <div
+          className={
+            checkedPrefs !== defferedCheckedPrefs
+              ? styles.loading
+              : styles.loaded
+          }
+        >
+          読み込み中...
+        </div>
+      </div>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart
           data={graphData.data}

@@ -1,0 +1,13 @@
+.container {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  height: 32px;
+}
+
+.loading {
+  display: block;
+}
+
+.loaded {
+  display: none;
+}
