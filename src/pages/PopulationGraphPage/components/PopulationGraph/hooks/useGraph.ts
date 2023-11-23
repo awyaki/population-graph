@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { useMemo } from "react";
 import { usePrefectures } from "../../../hooks/usePrefectures";
 import { usePopulation } from "./usePopulation";
 import { useGetGraphData } from "./useGetGraphData";
