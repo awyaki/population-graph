@@ -11,14 +11,16 @@ import {
 } from "recharts";
 import { useGraph } from "./hooks/useGraph";
 import { getLineColor } from "./functions/getLineColor";
+import { useDeferredValue } from "react";
 
 type Props = {
   checkedPrefs: number[];
 };
 
 const PopulationGraph: React.FC<Props> = ({ checkedPrefs }) => {
+  const defferedCheckedPrefs = useDeferredValue(checkedPrefs);
   const { selectedLabel, renderLabelTabBar, checkedPrefsWithNames, graphData } =
-    useGraph(checkedPrefs);
+    useGraph(defferedCheckedPrefs);
 
   return (
     <div>
