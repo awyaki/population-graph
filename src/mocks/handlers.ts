@@ -1,4 +1,4 @@
-import { http, HttpResponse } from "msw";
+import { http, delay, HttpResponse } from "msw";
 import { prefectures } from "./data/prefectures.js";
 import { populationTokyo as tokyo } from "./data/population-13-tokyo.js";
 import { populationAichi as aichi } from "./data/population-23-aichi.js";
@@ -10,7 +10,8 @@ export const handlers = [
 
     return HttpResponse.json(prefectures);
   }),
-  http.get("/api/population", ({ request }) => {
+  http.get("/api/population", async ({ request }) => {
+    await delay();
     const url = new URL(request.url);
     const { searchParams } = url;
 
