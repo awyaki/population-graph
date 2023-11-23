@@ -1,8 +1,7 @@
 import { z } from "zod";
 import { useMemo } from "react";
-import { useSuspenseQueries } from "@tanstack/react-query";
 import { usePrefectures } from "../../../hooks/usePrefectures";
-import { fetchPopulation } from "../../../../../resas-api/fetchPopulation";
+import { usePopulation } from "./usePopulation";
 import { Prefectures, Population } from "../../../../../resas-api/schema";
 import { translateIntoGraphData } from "../functions/translateIntoGraphData";
 import { useLabelTabBar } from "./useLabelTabBar";
@@ -21,22 +20,16 @@ export const useGraph = (
 } => {
   const { selectedLabel, renderLabelTabBar } = useLabelTabBar();
   const prefs = usePrefectures();
-
-  const results = useSuspenseQueries({
-    queries: checkedPrefs.map((prefCode) => ({
-      queryKey: ["population", prefCode],
-      queryFn: () => fetchPopulation(prefCode),
-    })),
-  });
+  const population = usePopulation(checkedPrefs);
 
   const graphData = useMemo(() => {
     return translateIntoGraphData(
       checkedPrefs,
       prefs,
-      results.map((v) => v.data),
+      population,
       selectedLabel
     );
-  }, [checkedPrefs, prefs, results, selectedLabel]);
+  }, [checkedPrefs, prefs, population, selectedLabel]);
 
   const checkedPrefsWithNames = useMemo(() => {
     const prefsMap = new Map<number, string>(
