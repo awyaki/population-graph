@@ -5,7 +5,7 @@ import { baseUrl } from "./config";
 type Prefectures = z.infer<typeof Prefectures>;
 
 export const fetchPrefectures = async (): Promise<Prefectures> => {
-  const res = await fetch(`${baseUrl}/api/prefectures`);
+  const res = await fetch(`${baseUrl}/prefectures`);
 
   if (!res.ok) throw new Error("データの取得に失敗しました");
 
