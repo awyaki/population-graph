@@ -9,12 +9,12 @@ type ApiResponse = z.infer<typeof ApiResponse>;
 
 const fetchPopulation = async (prefCode: number): Promise<ApiResponse> => {
   const response = await fetch(
-    `${BASE_URL}/population/composition/perYear?cityCode=-&prefCode=${prefCode}`,
+    `${BASE_URL}/population/composition/perYear?prefCode=${prefCode}`,
     {
       headers: {
         "X-API-KEY": API_KEY,
       },
-    }
+    },
   );
 
   const _data = (await response.json()) as unknown;
