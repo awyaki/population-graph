@@ -3,7 +3,7 @@ import { usePrefectures } from "../../../hooks/usePrefectures";
 import { usePopulation } from "./usePopulation";
 import { useGetGraphData } from "./useGetGraphData";
 import { useCheckedPrefsWithNames } from "./useCheckedPrefsWithNames";
-import { Prefectures, Population } from "../../../../../resas-api/schema";
+import { Prefectures, Population } from "../../../../../yumemi-api/schema";
 import { translateIntoGraphData } from "../functions/translateIntoGraphData";
 import { useLabelTabBar } from "./useLabelTabBar";
 
@@ -12,7 +12,7 @@ type Prefs = z.infer<typeof Prefectures>["result"];
 type Label = z.infer<typeof Population>["result"]["data"][number]["label"];
 
 export const useGraph = (
-  checkedPrefs: number[]
+  checkedPrefs: number[],
 ): {
   selectedLabel: Label;
   checkedPrefsWithNames: Prefs;
@@ -26,7 +26,7 @@ export const useGraph = (
     checkedPrefs,
     prefs,
     population,
-    selectedLabel
+    selectedLabel,
   );
   const checkedPrefsWithNames = useCheckedPrefsWithNames(checkedPrefs, prefs);
 

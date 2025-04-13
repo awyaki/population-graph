@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { useSuspenseQueries } from "@tanstack/react-query";
-import { fetchPopulation } from "../../../../../resas-api/fetchPopulation";
-import { Population } from "../../../../../resas-api/schema";
+import { fetchPopulation } from "../../../../../yumemi-api/fetchPopulation";
+import { Population } from "../../../../../yumemi-api/schema";
 
 type Population = z.infer<typeof Population>["result"];
 

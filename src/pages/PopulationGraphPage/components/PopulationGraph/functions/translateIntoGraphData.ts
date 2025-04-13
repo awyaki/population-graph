@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Population, Prefectures } from "../../../../../resas-api/schema";
+import { Population, Prefectures } from "../../../../../yumemi-api/schema";
 
 export type Population = z.infer<typeof Population>;
 
@@ -52,7 +52,7 @@ export const translateIntoGraphData = (
   prefCodes: number[],
   prefs: PrefsPaylod,
   populations: PopPaylad[],
-  label: Label
+  label: Label,
 ): GraphData => {
   // 以降の処理においてprefCodesとpopulationsの長さが等しいことを保証する
   if (prefCodes.length !== populations.length)
@@ -61,7 +61,7 @@ export const translateIntoGraphData = (
   if (prefCodes.length === 0) return { boundaryYear: null, data: [] };
 
   const prefNameMap = new Map(
-    prefs.map(({ prefCode, prefName }) => [prefCode, prefName])
+    prefs.map(({ prefCode, prefName }) => [prefCode, prefName]),
   );
 
   const boundaryYear = populations[0].boundaryYear;
@@ -119,7 +119,7 @@ export const translateIntoGraphData = (
           // dataがあればマージする
           return { ...acc1, ...data };
         },
-        { label, year }
+        { label, year },
       );
 
       return acc.concat(element);

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Prefectures } from "../../../resas-api/schema";
-import { fetchPrefectures } from "../../../resas-api/fetchPrefectures";
+import { Prefectures } from "../../../yumemi-api/schema";
+import { fetchPrefectures } from "../../../yumemi-api/fetchPrefectures";
 
 type Prefs = z.infer<typeof Prefectures>["result"];
 

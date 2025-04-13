@@ -1,18 +1,18 @@
 import { z } from "zod";
 import { useMemo } from "react";
-import { Prefectures } from "../../../../../resas-api/schema";
+import { Prefectures } from "../../../../../yumemi-api/schema";
 
 type Prefs = z.infer<typeof Prefectures>["result"];
 
 export const useCheckedPrefsWithNames = (
   checkedPrefs: number[],
-  prefs: Prefs
+  prefs: Prefs,
 ) => {
   const checkedPrefsWithNames = useMemo(() => {
     const prefsMap = new Map<number, string>(
       prefs.map(({ prefCode, prefName }) => {
         return [prefCode, prefName];
-      })
+      }),
     );
 
     return checkedPrefs.map((prefCode) => {

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { useMemo } from "react";
 import { translateIntoGraphData } from "../functions/translateIntoGraphData";
-import { Population, Prefectures } from "../../../../../resas-api/schema";
+import { Population, Prefectures } from "../../../../../yumemi-api/schema";
 
 type Prefs = z.infer<typeof Prefectures>["result"];
 type Population = z.infer<typeof Population>["result"];
@@ -10,14 +10,14 @@ export const useGetGraphData = (
   checkedPrefs: number[],
   prefs: Prefs,
   population: Population[],
-  selectedLabel: Label
+  selectedLabel: Label,
 ) => {
   const graphData = useMemo(() => {
     return translateIntoGraphData(
       checkedPrefs,
       prefs,
       population,
-      selectedLabel
+      selectedLabel,
     );
   }, [checkedPrefs, prefs, population, selectedLabel]);
 
