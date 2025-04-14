@@ -19,9 +19,9 @@ type Props = {
 };
 
 const PopulationGraph: React.FC<Props> = ({ checkedPrefs }) => {
-  const defferedCheckedPrefs = useDeferredValue(checkedPrefs);
+  const deferredCheckedPrefs = useDeferredValue(checkedPrefs);
   const { selectedLabel, renderLabelTabBar, checkedPrefsWithNames, graphData } =
-    useGraph(defferedCheckedPrefs);
+    useGraph(deferredCheckedPrefs);
 
   return (
     <div>
@@ -29,7 +29,7 @@ const PopulationGraph: React.FC<Props> = ({ checkedPrefs }) => {
       <div className={styles.container}>
         <div
           className={
-            checkedPrefs !== defferedCheckedPrefs
+            checkedPrefs !== deferredCheckedPrefs
               ? styles.loading
               : styles.loaded
           }
